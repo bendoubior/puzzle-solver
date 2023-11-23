@@ -11,7 +11,7 @@ export class PuzzlesService {
         private puzzleStateService: PuzzleStateService) {}
     
     public GetPuzzlesIds(): Promise<number[]> {
-      return this.dbService.GetAll();
+      return this.dbService.GetIds();
     }
 
     public GetPuzzle(id: number): Promise<Puzzle> {
@@ -20,12 +20,12 @@ export class PuzzlesService {
 
     public async GeneratedPuzzleByBfs(row: number, column: number): Promise<void> {
         const generatedPuzzle = this.generatePuzzlesService.GenerateBfs(row, column);
-        this.dbService.PushOne(generatedPuzzle);
+        this.dbService.CreateOne(generatedPuzzle);
     }
 
     public async GeneratedPuzzleByDfs(row: number, column: number): Promise<void> {
         const generatedPuzzle = this.generatePuzzlesService.GenerateDfs(row, column);
-        this.dbService.PushOne(generatedPuzzle);
+        this.dbService.CreateOne(generatedPuzzle);
     }
 
     public async CheckStep(id: number, stepIndex: number, step: Step): Promise<boolean> {

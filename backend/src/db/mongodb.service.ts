@@ -1,10 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { Puzzle } from 'src/interfaces/puzzle.interface';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model, isValidObjectId } from 'mongoose';
+import { Puzzle } from 'src/schemas/puzzle.schema';
 
 @Injectable()
 export class MongodbService {
-    public async GetAll(): Promise<number[]> { return [1];};
-    public async FindOne(id: number): Promise<Puzzle> { return {} as Puzzle};
-    public async PushOne(puzzle: Puzzle): Promise<void> {};
-    public async UpdateOne(puzzle: Puzzle): Promise<void> {};
+    constructor(@InjectModel(Puzzle.name) private puzzleModel: Model<Puzzle>) {}
+
+    public async GetIds(): Promise<number[]> {
+        const puzzles = await this.puzzleModel.find().exec();
+        return puzzles.map((puzzle: any) => puzzle._id);
+    }
+
+    public async FindOne(id: number): Promise<Puzzle> {
+        if(!isValidObjectId(id)) return null;
+        return this.puzzleModel.findById(id).exec();
+    }
+
+    public async CreateOne(puzzle: Puzzle): Promise<void> {
+        this.puzzleModel.create(puzzle);
+    }
+
+    public async UpdateOne(puzzle: Puzzle): Promise<void> {
+        this.puzzleModel.updateOne(puzzle);
+
+    }
 }

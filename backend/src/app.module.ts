@@ -6,9 +6,14 @@ import { AbstractDbService } from './db/db.service';
 import { MongodbService } from './db/mongodb.service';
 import { GeneratePuzzlesService } from './generate-puzzles/generate-puzzles.service';
 import { PuzzleStateService } from './puzzle-state/puzzle-state.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { Puzzle, PuzzleSchema } from './schemas/puzzle.schema';
 
 @Module({
-  imports: [],
+  imports: [
+    MongooseModule.forRoot('mongodb://localhost:27017/puzzles'),
+    MongooseModule.forFeature([{ name: Puzzle.name, schema: PuzzleSchema }])
+  ],
   controllers: [PuzzlesController],
   providers: [
     AppService, 
