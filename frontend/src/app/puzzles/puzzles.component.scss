@@ -1,0 +1,21 @@
+.puzzles {
+    text-align: center;
+}
+
+.name-list {
+    max-height: 400px; 
+    overflow-y: auto; 
+    border: 1px solid #ccc; 
+    padding: 0; 
+    list-style-type: none; 
+  }
+  
+  .name-list li {
+    padding: 8px 12px; 
+    cursor: pointer; 
+  }
+  
+  .name-list li:hover {
+    background-color: #f0f0f0; 
+  }
+  

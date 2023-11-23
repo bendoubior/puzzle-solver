@@ -1,0 +1,17 @@
+<div class="puzzles">
+    <h2>רשימת פאזלים</h2>
+    <ul class="name-list">
+    <li *ngFor="let id of PuzzlesIds; let i=index" (click)="SetPuzzle(id)">
+        i
+    </li>
+    </ul>
+    <div>
+        <form>
+            <input type="radio" name="GenerateType" value="bfs">Bfs
+            <input type="radio" name="GenerateType" value="dfs">Dfs
+        </form>
+        <button (click)="CreatePuzzle()">צור פאזל חדש</button>
+        <input dir="rtl" type="number" [(ngModel)]="NumColumns" placeholder="מספר עמודות"/>
+        <input dir="rtl" type="number" [(ngModel)]="NumRows" placeholder="מספר שורות"/>
+    </div>
+</div>

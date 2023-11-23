@@ -1,0 +1,15 @@
+<div class="full-page">
+  <div class="header">
+    <h1>פותר הפאזלים</h1>
+    <p dir="rtl">בואו נפתור פאזלים!</p>
+  </div>
+  <app-puzzles class="menu"
+  [PuzzlesIds]="this.PuzzlesService.PuzzlesIds$ | async"
+  (UpdatePuzzle)=this.PuzzlesService.SetCurrentPuzzle($event)
+  (GenerateDfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByDfs($event)
+  (GenerateBfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByBfs($event)
+  ></app-puzzles>
+  <app-puzzle-display class="main"
+  [Puzzle]="this.PuzzlesService.Puzzle$ | async"
+  ></app-puzzle-display> 
+</div>

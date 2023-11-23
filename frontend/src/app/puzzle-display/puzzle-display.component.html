@@ -1,0 +1,11 @@
+<div *ngIf="CurrentPuzzle" class="full-page">
+    <app-puzzle-state class="state"
+        [State]=CurrentState
+    ></app-puzzle-state>
+    <div class="options">
+        <button (click)="MoveToFinalState()" disabled="currentStep == NumSteps">לסוף</button>
+        <button (click)="MoveStepForward()" disabled="currentStep > NumSteps">צעד קדימה</button>
+        <button (click)="MoveStepBack()" disabled="currentStep > 0">צעד אחורה</button>
+        <button (click)="MoveToInitialState()" disabled="currentStep == 0" >להתחלה</button>
+    </div> 
+  </div>
