@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { Step } from "src/interfaces/puzzle.interface";
+import { Point } from "src/interfaces/point.interface";
 
 export type PuzzleDocument = HydratedDocument<Puzzle>;
 
@@ -8,10 +8,10 @@ export type PuzzleDocument = HydratedDocument<Puzzle>;
 export class Puzzle {
     @Prop() initialState: number[][];
     @Prop() finalState: number[][];
-    @Prop() steps: Step[];
+    @Prop() steps: Point[];
     @Prop() totalSteps: number;
     @Prop() currentState: number[][];
-    @Prop() completedSteps: Step[];
+    @Prop() completedSteps: Point[];
     @Prop() numberOfCompletedSteps: number;
 }
 

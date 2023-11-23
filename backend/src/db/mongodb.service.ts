@@ -23,6 +23,5 @@ export class MongodbService {
 
     public async UpdateOne(puzzle: Puzzle): Promise<void> {
         this.puzzleModel.updateOne(puzzle);
-
     }
 }

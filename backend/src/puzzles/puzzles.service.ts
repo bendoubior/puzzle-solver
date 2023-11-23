@@ -1,7 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { AbstractDbService } from 'src/db/db.service';
 import { GeneratePuzzlesService } from 'src/generate-puzzles/generate-puzzles.service';
-import { Puzzle, Step } from 'src/interfaces/puzzle.interface';
+import { Point } from 'src/interfaces/point.interface';
+import { Puzzle } from 'src/interfaces/puzzle.interface';
 import { PuzzleStateService } from 'src/puzzle-state/puzzle-state.service';
 
 @Injectable()
@@ -28,7 +29,7 @@ export class PuzzlesService {
         this.dbService.CreateOne(generatedPuzzle);
     }
 
-    public async CheckStep(id: number, stepIndex: number, step: Step): Promise<boolean> {
+    public async CheckStep(id: number, stepIndex: number, step: Point): Promise<boolean> {
         const puzzle = await this.dbService.FindOne(id);
         if(puzzle.steps[stepIndex] == step) {
             puzzle.numberOfCompletedSteps += 1;
