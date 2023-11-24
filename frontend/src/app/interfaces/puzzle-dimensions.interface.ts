@@ -1,4 +1,4 @@
 export interface PuzzleDimensions {
-    rows: number;
+    rows: number
     columns: number;
 }

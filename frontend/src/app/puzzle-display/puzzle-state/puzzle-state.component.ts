@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Point } from 'src/app/interfaces/point.interface';
 
 @Component({
   selector: 'app-puzzle-state',
@@ -7,8 +8,9 @@ import { Component, Input } from '@angular/core';
 })
 export class PuzzleStateComponent {
   @Input() State: number[][];
+  @Input() XNeighbors: Point[];
 
-  constructor() { 
-    this.State = [];
+  public IsXNeighbor(row: number, column: number): boolean {
+    return this.XNeighbors.some((point: Point) => point.row == row && point.column == column)
   }
 }

@@ -1,11 +1,13 @@
-<div *ngIf="CurrentPuzzle" class="full-page">
+<div *ngIf="Puzzle" class="full-page">
     <app-puzzle-state class="state"
-        [State]=CurrentState
+        [State]=Puzzle.userProgress.currentState
+        [XNeighbors]="XNeighbors"
     ></app-puzzle-state>
     <div class="options">
-        <button (click)="MoveToFinalState()" disabled="currentStep == NumSteps">לסוף</button>
-        <button (click)="MoveStepForward()" disabled="currentStep > NumSteps">צעד קדימה</button>
-        <button (click)="MoveStepBack()" disabled="currentStep > 0">צעד אחורה</button>
-        <button (click)="MoveToInitialState()" disabled="currentStep == 0" >להתחלה</button>
+        <button (click)="FinalState()" disabled="Puzzle.userProgress.numberOfCompletedSteps != Puzzle.totalSteps">לסוף</button>
+        <button (click)="StepForward()" disabled="Puzzle.userProgress.currentStepIndex >= Puzzle.userProgress.numberOfCompletedSteps">צעד קדימה</button>
+        <button (click)="StepBack()" disabled="Puzzle.userProgress.currentStepIndex == 0">צעד אחורה</button>
+        <button (click)="InitialState()" disabled="Puzzle.userProgress.currentStepIndex == 0" >להתחלה</button>
+        <button (click)="RemovePuzzle()">מחק פאזל</button>
     </div> 
   </div>

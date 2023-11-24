@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { PuzzlesService } from './services/puzzles.service';
+import { PuzzlesFacade } from './facades/puzzles.facade';
+import { PuzzleStateFacade } from './facades/puzzle-state.facade';
+import { PuzzleStateService } from './services/puzzle-state.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,7 @@ import { PuzzlesService } from './services/puzzles.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public PuzzlesService: PuzzlesService) {}
+  constructor(public PuzzlesService: PuzzlesFacade,
+    public PuzzleStateFacade: PuzzleStateFacade,
+    public PuzzleStateService: PuzzleStateService) {}
 }

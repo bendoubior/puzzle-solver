@@ -1,16 +1,11 @@
+import { Point } from "./point.interface";
+import { UserProgress } from "./user-progress.interface";
+
 export interface Puzzle {
-    id: number
+    _id: number
     initialState: number[][];
     finalState: number[][];
+    steps: Point[];
     totalSteps: number;
-    currentState: number[][];
-    completedSteps: Step[];
-    numberOfCompletedSteps: number;
-}
-
-export enum Step {
-    Right=0,
-    Left=1,
-    Up=2,
-    Down=3,
+    userProgress: UserProgress;
 }

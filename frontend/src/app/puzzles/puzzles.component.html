@@ -2,7 +2,7 @@
     <h2>רשימת פאזלים</h2>
     <ul class="name-list">
     <li *ngFor="let id of PuzzlesIds; let i=index" (click)="SetPuzzle(id)">
-        i
+        {{ i + 1 }}
     </li>
     </ul>
     <div>

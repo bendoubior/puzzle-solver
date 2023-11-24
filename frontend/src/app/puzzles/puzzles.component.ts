@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PuzzleDimensions } from '../interfaces/puzzle-dimensions.interface';
-import { Puzzle } from '../interfaces/puzzle.interface';
 
 @Component({
   selector: 'app-puzzles',

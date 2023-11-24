@@ -5,11 +5,18 @@
   </div>
   <app-puzzles class="menu"
   [PuzzlesIds]="this.PuzzlesService.PuzzlesIds$ | async"
-  (UpdatePuzzle)=this.PuzzlesService.SetCurrentPuzzle($event)
+  (UpdatePuzzle)=this.PuzzleStateFacade.SetPuzzle($event)
   (GenerateDfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByDfs($event)
   (GenerateBfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByBfs($event)
   ></app-puzzles>
   <app-puzzle-display class="main"
-  [Puzzle]="this.PuzzlesService.Puzzle$ | async"
+  [Puzzle]="this.PuzzleStateFacade.Puzzle$ | async"
+  [XNeighbors]="this.PuzzleStateService.XNeighbors$ | async"
+  (DeletePuzzle)=this.PuzzleStateFacade.DeletePuzzle()
+  (CheckStep)=this.PuzzleStateFacade.CheckStep($event)
+  (MoveStepForward)=this.PuzzleStateFacade.MoveStepForward()
+  (MoveStepBack)=this.PuzzleStateFacade.MoveStepBack()
+  (MoveToInitialState)=this.PuzzleStateFacade.MoveToInitialState()
+  (MoveToFinalState)=this.PuzzleStateFacade.MoveToFinalState()
   ></app-puzzle-display> 
 </div>
