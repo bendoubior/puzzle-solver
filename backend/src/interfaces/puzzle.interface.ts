@@ -1,4 +1,5 @@
 import { Point } from "./point.interface";
+import { UserProgress } from "./user-progress.interface";
 
 export interface Puzzle {
     id: number
@@ -6,7 +7,5 @@ export interface Puzzle {
     finalState: number[][];
     steps: Point[];
     totalSteps: number;
-    currentState: number[][];
-    completedSteps: Point[];
-    numberOfCompletedSteps: number;
+    userProgress: UserProgress;
 }

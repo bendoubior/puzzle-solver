@@ -1,40 +1,34 @@
 import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 import { Point } from 'src/interfaces/point.interface';
 import { Puzzle } from 'src/interfaces/puzzle.interface';
 
 @Injectable()
 export class GeneratePuzzlesService {
-
     public GenerateBfs(rows: number, columns: number): Puzzle {
-        const initialState = [[2,3],[1,0]];
+        const initialState = this.generateRandomMatrix(rows, columns);
         const finalState = this.generateFinalMatrix(rows, columns);
         const steps = this.getStepsBfs(initialState, finalState);
+        if(!steps) return null;
         return {
             initialState: initialState,
             finalState: finalState,
             steps: steps,
             totalSteps: steps.length,
-            currentState: initialState,
-            completedSteps: [],
-            numberOfCompletedSteps: 0
         } as Puzzle;
     }
 
     public GenerateDfs(rows: number, columns: number): Puzzle {
-        const initialState = [[2,3],[1,0]];
+      const initialState = this.generateRandomMatrix(rows, columns);
         const finalState = this.generateFinalMatrix(rows, columns);
         let visited = new Set<string>();
         visited.add(JSON.stringify(JSON.parse(JSON.stringify(initialState))));
         const steps = this.getStepsDfs(initialState, finalState, visited);
+        if(!steps) return null;
         return {
             initialState: initialState,
             finalState: finalState,
             steps: steps,
             totalSteps: steps.length,
-            currentState: initialState,
-            completedSteps: [],
-            numberOfCompletedSteps: 0
         } as Puzzle;
     }
 
@@ -165,9 +159,7 @@ export class GeneratePuzzlesService {
               [newState[neighbor.row][neighbor.column], newState[emptyPos.row][emptyPos.column]]; // Swap positions
         
             const key = JSON.stringify(newState);
-            
-            console.log('visited', visited);
-            
+                        
             if (!visited.has(key)) {
                 visited.add(key);
                 const solution = this.getStepsDfs(newState, finalState, visited, [...path, neighbor]);

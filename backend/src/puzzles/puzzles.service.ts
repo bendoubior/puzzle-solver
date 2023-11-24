@@ -1,43 +1,35 @@
 import { Injectable } from '@nestjs/common';
+import { log } from 'console';
 import { AbstractDbService } from 'src/db/db.service';
 import { GeneratePuzzlesService } from 'src/generate-puzzles/generate-puzzles.service';
 import { Point } from 'src/interfaces/point.interface';
 import { Puzzle } from 'src/interfaces/puzzle.interface';
 import { PuzzleStateService } from 'src/puzzle-state/puzzle-state.service';
+import { UserProgressService } from 'src/services/user-progress.service';
 
 @Injectable()
 export class PuzzlesService {
     constructor(private dbService: AbstractDbService,
         private generatePuzzlesService: GeneratePuzzlesService,
-        private puzzleStateService: PuzzleStateService) {}
+        private userProgressService: UserProgressService) {}
     
     public GetPuzzlesIds(): Promise<number[]> {
-      return this.dbService.GetIds();
+        return this.dbService.GetIds();
     }
 
-    public GetPuzzle(id: number): Promise<Puzzle> {
-        return this.dbService.FindOne(id);
+    public DeleteAllPuzzles(): void {
+        this.dbService.DeleteAll();
     }
 
-    public async GeneratedPuzzleByBfs(row: number, column: number): Promise<void> {
+    public GeneratedPuzzleByBfs(row: number, column: number): void {
         const generatedPuzzle = this.generatePuzzlesService.GenerateBfs(row, column);
+        generatedPuzzle.userProgress = this.userProgressService.GetInitialUserProgress(generatedPuzzle.initialState);        
         this.dbService.CreateOne(generatedPuzzle);
     }
 
-    public async GeneratedPuzzleByDfs(row: number, column: number): Promise<void> {
+    public GeneratedPuzzleByDfs(row: number, column: number): void {
         const generatedPuzzle = this.generatePuzzlesService.GenerateDfs(row, column);
+        generatedPuzzle.userProgress = this.userProgressService.GetInitialUserProgress(generatedPuzzle.initialState);
         this.dbService.CreateOne(generatedPuzzle);
-    }
-
-    public async CheckStep(id: number, stepIndex: number, step: Point): Promise<boolean> {
-        const puzzle = await this.dbService.FindOne(id);
-        if(puzzle.steps[stepIndex] == step) {
-            puzzle.numberOfCompletedSteps += 1;
-            puzzle.completedSteps.push(step);
-            puzzle.currentState = this.puzzleStateService.ExecuteStep(puzzle.currentState, step);
-            this.dbService.UpdateOne(puzzle);
-            return true;
-        }
-        return false;
     }
 }
