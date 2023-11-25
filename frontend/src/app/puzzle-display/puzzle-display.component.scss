@@ -6,14 +6,10 @@
 }
 
 .state {
-    border-style: solid;
-    border-color: blueviolet;
     grid-row: 1 / 5;
 }
 
 .options {
-    border-style: solid;
-    border-color: blue;
     grid-row: 5;
     display: flex;
     flex-direction: row;

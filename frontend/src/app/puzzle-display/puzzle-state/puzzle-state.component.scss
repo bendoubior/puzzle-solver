@@ -1,11 +1,10 @@
-:root {
-    --num-columns: 3; 
-}
-
 .container {
-    height: 100%;
+    height: calc(100% - 2vw);
     display: flex;
     flex-direction: column;
+    margin: 1vw;
+    border-style: solid;
+    border-color:  var(--grey);
 }
 
 .row {
@@ -27,8 +26,6 @@
     justify-content: center;
     text-align: center;
     font-size: 20px;
-    border-style: solid;
-    border-color: blue;
 }
 
 .button {
