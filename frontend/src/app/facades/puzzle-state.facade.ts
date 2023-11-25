@@ -32,8 +32,6 @@ export class PuzzleStateFacade {
   }
 
   public async CheckStep(step: Point): Promise<void> {
-    console.log(666);
-    
     const currentPuzzle = this.puzzle$.value;
     await this.puzzleStateApi.CheckStep(currentPuzzle._id, currentPuzzle.userProgress.currentStepIndex, step);
     this.SetPuzzle(currentPuzzle._id);

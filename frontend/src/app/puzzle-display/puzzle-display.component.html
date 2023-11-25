@@ -2,12 +2,13 @@
     <app-puzzle-state class="state"
         [State]=Puzzle.userProgress.currentState
         [XNeighbors]="XNeighbors"
+        (CheckStep)=this.StepCheck($event)
     ></app-puzzle-state>
     <div class="options">
-        <button (click)="FinalState()" disabled="Puzzle.userProgress.numberOfCompletedSteps != Puzzle.totalSteps">לסוף</button>
-        <button (click)="StepForward()" disabled="Puzzle.userProgress.currentStepIndex >= Puzzle.userProgress.numberOfCompletedSteps">צעד קדימה</button>
-        <button (click)="StepBack()" disabled="Puzzle.userProgress.currentStepIndex == 0">צעד אחורה</button>
-        <button (click)="InitialState()" disabled="Puzzle.userProgress.currentStepIndex == 0" >להתחלה</button>
+        <button (click)="FinalState()" [disabled]="Puzzle.userProgress.numberOfCompletedSteps != Puzzle.totalSteps || Puzzle.userProgress.currentStepIndex == Puzzle.totalSteps">לסוף</button>
+        <button (click)="StepForward()" [disabled]="Puzzle.userProgress.currentStepIndex >= Puzzle.userProgress.numberOfCompletedSteps">צעד קדימה</button>
+        <button (click)="StepBack()" [disabled]="Puzzle.userProgress.currentStepIndex == 0">צעד אחורה</button>
+        <button (click)="InitialState()" [disabled]="Puzzle.userProgress.currentStepIndex == 0" >להתחלה</button>
         <button (click)="RemovePuzzle()">מחק פאזל</button>
     </div> 
   </div>

@@ -25,7 +25,6 @@ export class PuzzleDisplayComponent {
     this.MoveToInitialState = new EventEmitter<void>();
     this.MoveToFinalState = new EventEmitter<void>();
   }
-
   
   public RemovePuzzle(): void {
     this.DeletePuzzle.emit();

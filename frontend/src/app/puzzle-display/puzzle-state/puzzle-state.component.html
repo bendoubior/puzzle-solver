@@ -2,7 +2,7 @@
     <div class="row" *ngFor="let row of State; let i=index">
         <div class="point" *ngFor="let point of row; let j=index">
             <div class="button" *ngIf="point !=0; else elseBlock">
-                <button class="button" [disabled]="!IsXNeighbor(i,j)">
+                <button class="button" [disabled]="!IsXNeighbor(i,j)" (click)="ClickPoint(i,j)">
                     {{point}}
                 </button>
             </div>

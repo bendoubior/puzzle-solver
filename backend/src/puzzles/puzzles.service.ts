@@ -23,6 +23,7 @@ export class PuzzlesService {
 
     public GeneratedPuzzleByBfs(row: number, column: number): void {
         const generatedPuzzle = this.generatePuzzlesService.GenerateBfs(row, column);
+        if(generatedPuzzle === null) return;
         generatedPuzzle.userProgress = this.userProgressService.GetInitialUserProgress(generatedPuzzle.initialState);        
         this.dbService.CreateOne(generatedPuzzle);
     }

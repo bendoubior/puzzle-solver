@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 import { AbstractDbService } from 'src/db/db.service';
 import { Point } from 'src/interfaces/point.interface';
 import { Puzzle } from 'src/interfaces/puzzle.interface';
@@ -21,16 +20,15 @@ export class PuzzleStateService {
         if(stepIndex != puzzle.userProgress.currentStepIndex ) return;
         if(JSON.stringify(puzzle.steps[stepIndex]) !== JSON.stringify(step)) return;
         
-        puzzle.userProgress.numberOfCompletedSteps += 1;
-        puzzle.userProgress.currentStepIndex += 1;
         puzzle.userProgress.currentState = this.ExecuteStep(puzzle.userProgress.currentState, puzzle.steps[puzzle.userProgress.currentStepIndex]);
-        
+        if(puzzle.userProgress.currentStepIndex == puzzle.userProgress.numberOfCompletedSteps) puzzle.userProgress.numberOfCompletedSteps += 1;
+        puzzle.userProgress.currentStepIndex += 1;
+
         this.dbService.FindOneAndUpdate(id, puzzle);
     }
 
     public async MoveStepForward(id: number): Promise<void> {
         let puzzle = await this.dbService.FindOne(id);
-        if(puzzle.userProgress.numberOfCompletedSteps >= puzzle.totalSteps) return;
         if(puzzle.userProgress.currentStepIndex >= puzzle.totalSteps) return;
         puzzle.userProgress.currentState = this.ExecuteStep(puzzle.userProgress.currentState, puzzle.steps[puzzle.userProgress.currentStepIndex]);
         puzzle.userProgress.currentStepIndex = puzzle.userProgress.currentStepIndex + 1;
@@ -64,8 +62,6 @@ export class PuzzleStateService {
     public ExecuteStep(state: number[][], step: Point): number[][] {   
         const xPosition = this.findPositionOfMissingPiece(state);
         if(!xPosition) return state;
-        console.log(xPosition, step);
-        
         this.replacePosition(state, xPosition, step);
         return state;
     }
