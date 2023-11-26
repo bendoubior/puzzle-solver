@@ -27,7 +27,7 @@
   }
 
   .name-item:hover {
-    background-color: #f0f0f0; 
+    background-color: var(--grayish-white); 
   }
 }
   
@@ -37,7 +37,7 @@
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 0.5vw; 
   margin: 10px; 
-  font-size: 20px;
+  font-size: var(--large-font);
   
   .input-container {
     display: flex;
@@ -66,16 +66,16 @@
   .generate-button {
     grid-column: 1 / 4;
     grid-row: 3;
-    font-size: 20px;
+    font-size: var(--large-font);
     font-weight: bold;
     color: var(--grey);
   }
   .success-button {
-    color: green;
+    color: var(--green);
   }
   
   .error-button {
-    color: red;
+    color: var(--red);
   }
 }
 
@@ -87,7 +87,7 @@
 
 /* Track (the area behind the scrollbar) */
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; /* Track color */
+  background: var(--grayish-white); /* Track color */
 }
 
 /* Thumb (the draggable scrolling handle) */
@@ -98,20 +98,20 @@
 
 /* Change thumb color on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555; /* New thumb color on hover */
+  background: var(--dark-grey); /* New thumb color on hover */
 }
 
 /* Apply basic styling to the input */
 .styled-input {
   padding: 8px; /* Add padding for better spacing */
-  border: 1px solid #ccc; /* Add a border */
+  border: 1px solid var(--light-grey); /* Add a border */
   border-radius: 4px; /* Rounded corners */
-  font-size: 14px; /* Adjust font size */
+  font-size: var(--small-font); /* Adjust font size */
   outline: none; /* Remove default focus outline */
   width: 4vw;
 }
 
 /* Improve appearance on hover */
 .styled-input:hover {
-  border-color: #999; /* Change border color on hover */
+  border-color: var(--grey); /* Change border color on hover */
 }

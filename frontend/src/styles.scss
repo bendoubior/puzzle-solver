@@ -3,7 +3,16 @@
 :root {
     --primary-color: black;
     --secondary-color: white; 
+    --grayish-white: #f0f0f0;
     --grey: grey;
+    --dark-grey: #555;
+    --light-grey: #ccc;
+    --green: green;
+    --red: red;
+
+    --large-font: 20px;
+    --medium-font: 18px;
+    --small-font: 14px;
 }
 
 html, body {
@@ -14,6 +23,7 @@ html, body {
 h1 {
     font-size: 50px;
 }
+
 h2 {
     font-size: 25px;
 }
