@@ -3,51 +3,51 @@ import { Point } from 'src/app/core/interfaces/point.interface';
 import { Puzzle } from 'src/app/core/interfaces/puzzle.interface';
 
 @Component({
-  selector: 'app-puzzle-display',
-  templateUrl: './puzzle-display.component.html',
-  styleUrls: ['./puzzle-display.component.scss']
+    selector: 'app-puzzle-display',
+    templateUrl: './puzzle-display.component.html',
+    styleUrls: ['./puzzle-display.component.scss'],
 })
 export class PuzzleDisplayComponent {
-  @Input() Puzzle: Puzzle;
-  @Input() XNeighbors: Point[];
-  @Output() DeletePuzzle: EventEmitter<number>;
-  @Output() CheckStep: EventEmitter<Point>;
-  @Output() MoveStepForward: EventEmitter<void>;
-  @Output() MoveStepBack: EventEmitter<void>;
-  @Output() MoveToInitialState: EventEmitter<void>;
-  @Output() MoveToFinalState: EventEmitter<void>;
+    @Input() Puzzle: Puzzle;
+    @Input() XNeighbors: Point[];
+    @Output() DeletePuzzle: EventEmitter<number>;
+    @Output() CheckStep: EventEmitter<Point>;
+    @Output() MoveStepForward: EventEmitter<void>;
+    @Output() MoveStepBack: EventEmitter<void>;
+    @Output() MoveToInitialState: EventEmitter<void>;
+    @Output() MoveToFinalState: EventEmitter<void>;
 
-  constructor() {
-    this.DeletePuzzle = new EventEmitter<number>();
-    this.CheckStep = new EventEmitter<Point>();
-    this.MoveStepForward = new EventEmitter<void>();
-    this.MoveStepBack = new EventEmitter<void>();
-    this.MoveToInitialState = new EventEmitter<void>();
-    this.MoveToFinalState = new EventEmitter<void>();
-  }
-  
-  public RemovePuzzle(): void {
-    this.DeletePuzzle.emit();
-  }
+    constructor() {
+        this.DeletePuzzle = new EventEmitter<number>();
+        this.CheckStep = new EventEmitter<Point>();
+        this.MoveStepForward = new EventEmitter<void>();
+        this.MoveStepBack = new EventEmitter<void>();
+        this.MoveToInitialState = new EventEmitter<void>();
+        this.MoveToFinalState = new EventEmitter<void>();
+    }
 
-  
-  public StepCheck(step: Point): void {
-    this.CheckStep.emit(step);
-  }
+    public RemovePuzzle(): void {
+        this.DeletePuzzle.emit();
+    }
 
-  public StepForward(): void {
-    this.MoveStepForward.emit();
-  }
-  
-  public StepBack(): void {
-    this.MoveStepBack.emit();
-  }
+    public StepCheck(step: Point): void {
+        this.CheckStep.emit(step);
+    }
 
-  public InitialState(): void {
-    this.MoveToInitialState.emit();
-  }
+    public StepForward(): void {
+        this.MoveStepForward.emit();
+    }
 
-  public FinalState(): void {
-    this.MoveToFinalState.emit();
-  }
+    public StepBack(): void {
+        this.MoveStepBack.emit();
+    }
+
+    public InitialState(): void {
+        this.MoveToInitialState.emit();
+    }
+
+    public FinalState(): void {
+        this.MoveToFinalState.emit();
+    }
 }
+

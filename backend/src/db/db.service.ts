@@ -10,3 +10,4 @@ export abstract class AbstractDbService {
     public abstract CreateOne(puzzle: Puzzle): Promise<void>;
     public abstract FindOneAndUpdate(id: number, puzzle: Puzzle): Promise<void>;
 }
+

@@ -1,4 +1,4 @@
 export interface Point {
-    row: number
+    row: number;
     column: number;
 }

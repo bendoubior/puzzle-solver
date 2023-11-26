@@ -13,12 +13,12 @@ export class MongodbService {
     }
 
     public async FindOne(id: number): Promise<Puzzle> {
-        if(!isValidObjectId(id)) return null;        
+        if (!isValidObjectId(id)) return null;
         return this.puzzleModel.findById(id).exec();
     }
 
     public DeleteOne(id: number): Promise<void> {
-        if(!isValidObjectId(id)) return null;
+        if (!isValidObjectId(id)) return null;
         this.puzzleModel.findByIdAndDelete(id).exec();
     }
 
@@ -31,9 +31,7 @@ export class MongodbService {
     }
 
     public async FindOneAndUpdate(id: number, puzzle: Puzzle): Promise<void> {
-        this.puzzleModel.findOneAndUpdate(
-            { _id: id },
-            { ...puzzle }, 
-            { new: true, select: '-_id' }).exec();
+        this.puzzleModel.findOneAndUpdate({ _id: id }, { ...puzzle }, { new: true, select: '-_id' }).exec();
     }
 }
+

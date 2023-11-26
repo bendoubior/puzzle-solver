@@ -1,0 +1,10 @@
+{
+    "singleAttributePerLine": true,
+    "printWidth": 140,
+    "tabWidth": 4,
+    "singleQuote": true,
+    "semi": true,
+    "endOfLine": "crlf",
+    "trailingComma": "all",
+    "arrowParens": "always"
+}

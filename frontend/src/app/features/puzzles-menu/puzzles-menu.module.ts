@@ -4,13 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [
-    PuzzlesMenuComponent,
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-  ],
-  exports: [PuzzlesMenuComponent]
+    declarations: [PuzzlesMenuComponent],
+    imports: [CommonModule, FormsModule],
+    exports: [PuzzlesMenuComponent],
 })
-export class PuzzlesMenuModule { }
+export class PuzzlesMenuModule {}
+

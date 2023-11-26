@@ -7,16 +7,9 @@ import { PuzzlesMenuModule } from './features/puzzles-menu/puzzles-menu.module';
 import { PuzzleDisplayModule } from './features/puzzle-display/puzzle-display.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    PuzzlesMenuModule,
-    PuzzleDisplayModule
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [BrowserModule, FormsModule, HttpClientModule, PuzzlesMenuModule, PuzzleDisplayModule],
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
+

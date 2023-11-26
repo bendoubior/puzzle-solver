@@ -5,16 +5,16 @@ import { PuzzleStateService } from 'src/services/puzzle-state/puzzle-state.servi
 
 @Controller('puzzle-state')
 export class PuzzleStateController {
-    constructor(private puzzleStateService: PuzzleStateService,) {}
+    constructor(private puzzleStateService: PuzzleStateService) {}
 
     @Get(':id')
     public GetPuzzle(@Param('id') id: number): Promise<Puzzle> {
-      return this.puzzleStateService.GetPuzzle(id);
+        return this.puzzleStateService.GetPuzzle(id);
     }
 
     @Delete(':id')
     public DeletePuzzle(@Param('id') id: number): Promise<void> {
-      return this.puzzleStateService.DeletePuzzle(id);
+        return this.puzzleStateService.DeletePuzzle(id);
     }
 
     @Post('check-step/:id')
@@ -26,7 +26,7 @@ export class PuzzleStateController {
     public MoveStepForward(@Param('id') id: number): Promise<void> {
         return this.puzzleStateService.MoveStepForward(id);
     }
-    
+
     @Post('move-back/:id')
     public MoveStepBack(@Param('id') id: number): Promise<void> {
         return this.puzzleStateService.MoveStepBack(id);
@@ -42,3 +42,4 @@ export class PuzzleStateController {
         return this.puzzleStateService.MoveToFinalState(id);
     }
 }
+

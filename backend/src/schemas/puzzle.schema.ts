@@ -1,7 +1,7 @@
-import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import { HydratedDocument, Schema as SchemaMongoose } from "mongoose";
-import { Point } from "src/interfaces/point.interface";
-import { UserProgress } from "src/interfaces/user-progress.interface";
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument, Schema as SchemaMongoose } from 'mongoose';
+import { Point } from 'src/interfaces/point.interface';
+import { UserProgress } from 'src/interfaces/user-progress.interface';
 
 export type PuzzleDocument = HydratedDocument<Puzzle>;
 

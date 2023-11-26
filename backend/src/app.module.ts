@@ -11,22 +11,27 @@ import { UserProgressService } from './services/user-progress/user-progress.serv
 import { PuzzleStateController } from './controllers/puzzle-state.controller';
 import { ConfigModule } from '@nestjs/config';
 import configuration from './configs/configuration';
+import { GenerateMatrixService } from './services/generate-matrix/generate-matrix.service';
+import { PuzzleActionsService } from './services/puzzle-actions/puzzle-actions.service';
 
 @Module({
-  imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/puzzles'),
-    MongooseModule.forFeature([{ name: Puzzle.name, schema: PuzzleSchema }]),
-    ConfigModule.forRoot({load: [configuration]})
-  ],
-  controllers: [PuzzlesController, PuzzleStateController],
-  providers: [
-    PuzzlesService, 
-    {
-      provide: AbstractDbService,
-      useClass: MongodbService
-    }, GeneratePuzzlesService, 
-    PuzzleStateService,
-    UserProgressService,
-  ],
+    imports: [
+        MongooseModule.forRoot('mongodb://localhost:27017/puzzles'),
+        MongooseModule.forFeature([{ name: Puzzle.name, schema: PuzzleSchema }]),
+        ConfigModule.forRoot({ load: [configuration] }),
+    ],
+    controllers: [PuzzlesController, PuzzleStateController],
+    providers: [
+        PuzzlesService,
+        {
+            provide: AbstractDbService,
+            useClass: MongodbService,
+        },
+        GenerateMatrixService,
+        PuzzleActionsService,
+        GeneratePuzzlesService,
+        PuzzleStateService,
+        UserProgressService,
+    ],
 })
 export class AppModule {}

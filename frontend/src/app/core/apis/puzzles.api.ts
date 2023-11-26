@@ -4,24 +4,25 @@ import { environment } from 'src/environments/environment';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class PuzzlesApi {
-  private serverUrl: string;
+    private serverUrl: string;
 
-  constructor(private http: HttpClient) { 
-    this.serverUrl = `http://${environment.serverUrl}/puzzles`;
-  }
+    constructor(private http: HttpClient) {
+        this.serverUrl = `http://${environment.serverUrl}/puzzles`;
+    }
 
-  public get PuzzlesIds(): Promise<number[]> {
-    return firstValueFrom(this.http.get<number[]>(this.serverUrl));
-  }
+    public get PuzzlesIds(): Promise<number[]> {
+        return firstValueFrom(this.http.get<number[]>(this.serverUrl));
+    }
 
-  public GeneratedPuzzleByBfs(rows: number, columns: number): Promise<boolean> {
-    return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/bfs/${rows}/${columns}`, null));
-  }
+    public GeneratedPuzzleByBfs(rows: number, columns: number): Promise<boolean> {
+        return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/bfs/${rows}/${columns}`, null));
+    }
 
-  public GeneratedPuzzleByDfs(rows: number, columns: number): Promise<boolean> {
-    return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/dfs/${rows}/${columns}`, null));
-  }
+    public GeneratedPuzzleByDfs(rows: number, columns: number): Promise<boolean> {
+        return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/dfs/${rows}/${columns}`, null));
+    }
 }
+
