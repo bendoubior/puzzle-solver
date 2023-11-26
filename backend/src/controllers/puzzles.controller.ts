@@ -1,6 +1,6 @@
 import { Controller, Get, Param, Post, Delete } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { PuzzlesService } from '../puzzles/puzzles.service';
+import { PuzzlesService } from '../services/puzzles/puzzles.service';
 
 @Controller('puzzles')
 export class PuzzlesController {

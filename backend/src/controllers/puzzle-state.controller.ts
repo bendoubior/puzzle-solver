@@ -1,7 +1,7 @@
 import { Controller, Get, Param, Body, Delete, Post } from '@nestjs/common';
 import { Point } from 'src/interfaces/point.interface';
 import { Puzzle } from 'src/interfaces/puzzle.interface';
-import { PuzzleStateService } from 'src/puzzle-state/puzzle-state.service';
+import { PuzzleStateService } from 'src/services/puzzle-state/puzzle-state.service';
 
 @Controller('puzzle-state')
 export class PuzzleStateController {

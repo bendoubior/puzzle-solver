@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Point } from 'src/app/interfaces/point.interface';
+import { Point } from 'src/app/core/interfaces/point.interface';
 
 @Component({
   selector: 'app-puzzle-state',

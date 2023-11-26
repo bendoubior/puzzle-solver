@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Puzzle } from '../interfaces/puzzle.interface';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Point } from '../interfaces/point.interface';
 import { PuzzleStateApi } from '../apis/puzzle-state.api';
 import { PuzzlesFacade } from './puzzles.facade';
+import { PuzzleNeigborsService } from '../services/puzzle-neighbors.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PuzzleStateFacade {
-  private puzzle$: BehaviorSubject<Puzzle>;
-  
-  constructor(private puzzleStateApi: PuzzleStateApi, private puzzlesFacade: PuzzlesFacade) {
+  private puzzle$: BehaviorSubject<Puzzle>;  
+  private xNeighbors$: Observable<Point[]>;
+
+  constructor(private puzzleStateApi: PuzzleStateApi, private puzzlesFacade: PuzzlesFacade, private puzzleNeigborsService: PuzzleNeigborsService) {
     this.puzzle$ = new BehaviorSubject<Puzzle>(null);
+    this.xNeighbors$ = this.puzzleNeigborsService.GetXNeighborsFromPuzzle$(this.puzzle$);
   }
 
   public get Puzzle$(): Observable<Puzzle> {
     return this.puzzle$.asObservable();
+  }
+  
+  public get XNeighbors$(): Observable<Point[]> {
+    return this.xNeighbors$;
   }
   
   public async SetPuzzle(id: number): Promise<void> {

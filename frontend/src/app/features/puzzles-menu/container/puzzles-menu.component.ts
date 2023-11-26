@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { PuzzleDimensions } from '../interfaces/puzzle-dimensions.interface';
+import { PuzzleDimensions } from '../../../core/interfaces/puzzle-dimensions.interface';
 
 @Component({
-  selector: 'app-puzzles',
-  templateUrl: './puzzles.component.html',
-  styleUrls: ['./puzzles.component.scss'],
+  selector: 'app-puzzles-menu',
+  templateUrl: './puzzles-menu.component.html',
+  styleUrls: ['./puzzles-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class PuzzlesComponent {
+export class PuzzlesMenuComponent {
   @Input() PuzzlesIds: number[];
   @Input() HasGeneratingSucceeded: boolean;
   @Input() IsGeneratingPossible: boolean;

@@ -1,25 +1,19 @@
 import { Injectable } from '@angular/core';
 import { PuzzleStateFacade } from '../facades/puzzle-state.facade';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Point } from '../interfaces/point.interface';
 import { Puzzle } from '../interfaces/puzzle.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PuzzleStateService {
-  private xNeighbors$: Observable<Point[]>;
-
-  constructor(private puzzleStateFacade: PuzzleStateFacade) { 
-    this.xNeighbors$ = this.puzzleStateFacade.Puzzle$.pipe(map((puzzle: Puzzle) => {
+export class PuzzleNeigborsService {
+  public GetXNeighborsFromPuzzle$(puzzle$: Observable<Puzzle>): Observable<Point[]> {
+    return puzzle$.pipe(map((puzzle: Puzzle) => {
       if(!puzzle) return [];
       const xPosition = this.getXPosition(puzzle.userProgress.currentState);
       return this.getXNeigbors(puzzle.userProgress.currentState, xPosition);
     }));
-  }
-
-  public get XNeighbors$(): Observable<Point[]> {
-    return this.xNeighbors$;
   }
 
   private getXPosition(state: number[][]): Point {

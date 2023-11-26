@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Puzzle } from '../interfaces/puzzle.interface';
-import { Point } from '../interfaces/point.interface';
+import { Point } from 'src/app/core/interfaces/point.interface';
+import { Puzzle } from 'src/app/core/interfaces/puzzle.interface';
 
 @Component({
   selector: 'app-puzzle-display',

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { AbstractDbService } from 'src/db/db.service';
-import { GeneratePuzzlesService } from 'src/generate-puzzles/generate-puzzles.service';
-import { UserProgressService } from 'src/services/user-progress.service';
+import { GeneratePuzzlesService } from 'src/services/generate-puzzles/generate-puzzles.service';
+import { UserProgressService } from 'src/services/user-progress/user-progress.service';
 
 @Injectable()
 export class PuzzlesService {

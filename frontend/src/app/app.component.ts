@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { PuzzlesFacade } from './facades/puzzles.facade';
-import { PuzzleStateFacade } from './facades/puzzle-state.facade';
-import { PuzzleStateService } from './services/puzzle-state.service';
+import { PuzzlesFacade } from './core/facades/puzzles.facade';
+import { PuzzleStateFacade } from './core/facades/puzzle-state.facade';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +9,5 @@ import { PuzzleStateService } from './services/puzzle-state.service';
 })
 export class AppComponent {
   constructor(public PuzzlesFacade: PuzzlesFacade,
-    public PuzzleStateFacade: PuzzleStateFacade,
-    public PuzzleStateService: PuzzleStateService) {}
+    public PuzzleStateFacade: PuzzleStateFacade) {}
 }

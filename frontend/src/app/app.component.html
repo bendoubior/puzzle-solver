@@ -3,17 +3,17 @@
     <h1>פותר הפאזלים</h1>
     <h2 dir="rtl">בואו נפתור פאזלים!</h2>
   </div>
-  <app-puzzles class="menu"
+  <app-puzzles-menu class="menu"
   [PuzzlesIds]="this.PuzzlesFacade.PuzzlesIds$ | async"
   [HasGeneratingSucceeded]="this.PuzzlesFacade.HasGeneratingSucceeded$ | async"
   [IsGeneratingPossible]="this.PuzzlesFacade.IsGeneratingPossible$ | async"
   (UpdatePuzzle)=this.PuzzleStateFacade.SetPuzzle($event)
   (GenerateDfsPuzzle)=this.PuzzlesFacade.GeneratedPuzzleByDfs($event)
   (GenerateBfsPuzzle)=this.PuzzlesFacade.GeneratedPuzzleByBfs($event)
-  ></app-puzzles>
+  ></app-puzzles-menu>
   <app-puzzle-display class="main"
   [Puzzle]="this.PuzzleStateFacade.Puzzle$ | async"
-  [XNeighbors]="this.PuzzleStateService.XNeighbors$ | async"
+  [XNeighbors]="this.PuzzleStateFacade.XNeighbors$ | async"
   (DeletePuzzle)=this.PuzzleStateFacade.DeletePuzzle()
   (CheckStep)=this.PuzzleStateFacade.CheckStep($event)
   (MoveStepForward)=this.PuzzleStateFacade.MoveStepForward()
