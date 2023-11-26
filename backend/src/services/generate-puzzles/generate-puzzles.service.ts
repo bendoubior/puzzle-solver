@@ -9,6 +9,7 @@ import { PuzzleActionsService } from '../puzzle-actions/puzzle-actions.service';
 @Injectable()
 export class GeneratePuzzlesService {
     private generatePuzzleMaxAttempts: number;
+    private generatePuzzleDepthLimit: number;
 
     constructor(
         private generateMatrixService: GenerateMatrixService,
@@ -17,6 +18,7 @@ export class GeneratePuzzlesService {
         private readonly configService: ConfigService,
     ) {
         this.generatePuzzleMaxAttempts = this.configService.get<number>('generatePuzzleMaxAttempts');
+        this.generatePuzzleDepthLimit = this.configService.get<number>('generatePuzzleDepthLimit');
     }
 
     public GenerateBfs(rows: number, columns: number): Puzzle {
@@ -61,7 +63,7 @@ export class GeneratePuzzlesService {
         return null;
     }
 
-    private getStepsBfs(initialState: number[][], finalState: number[][]): Point[] {
+    protected getStepsBfs(initialState: number[][], finalState: number[][]): Point[] {
         const queue: { state: number[][]; path: Point[] }[] = [];
         const visited: Set<string> = new Set();
 
@@ -91,7 +93,16 @@ export class GeneratePuzzlesService {
         return null;
     }
 
-    private getStepsDfs(currentState: number[][], finalState: number[][], visited: Set<string>, path: Point[] = []): Point[] {
+    protected getStepsDfs(
+        currentState: number[][],
+        finalState: number[][],
+        visited: Set<string>,
+        path: Point[] = [],
+        depth: number = 0,
+    ): Point[] {
+        if (depth > this.generatePuzzleDepthLimit) {
+            return null;
+        }
         if (this.puzzleActionsService.AreMatrixesEqual(currentState, finalState)) return path;
 
         const emptyPos = this.puzzleActionsService.GetXPointByValue(currentState);
@@ -105,7 +116,7 @@ export class GeneratePuzzlesService {
 
             if (!visited.has(key)) {
                 visited.add(key);
-                const solution = this.getStepsDfs(newState, finalState, visited, [...path, neighbor]);
+                const solution = this.getStepsDfs(newState, finalState, visited, [...path, neighbor], depth + 1);
 
                 if (solution !== null) {
                     return solution;

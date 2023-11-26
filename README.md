@@ -40,6 +40,14 @@ npm start
 
 The frontend will be accessible at http://localhost:4200.
 
+## Running Backend Tests with Jest
+
+```bash
+cd backend
+npm install
+npm test
+```
+
 ## Architecture Decisions
 
 ### Database (MongoDB): Explanation of the MongoDB database architecture decisions
