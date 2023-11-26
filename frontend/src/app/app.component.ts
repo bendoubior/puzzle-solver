@@ -9,7 +9,7 @@ import { PuzzleStateService } from './services/puzzle-state.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(public PuzzlesService: PuzzlesFacade,
+  constructor(public PuzzlesFacade: PuzzlesFacade,
     public PuzzleStateFacade: PuzzleStateFacade,
     public PuzzleStateService: PuzzleStateService) {}
 }

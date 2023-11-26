@@ -17,11 +17,11 @@ export class PuzzlesApi {
     return firstValueFrom(this.http.get<number[]>(this.serverUrl));
   }
 
-  public GeneratedPuzzleByBfs(rows: number, columns: number): Promise<void> {
-    return firstValueFrom(this.http.post<void>(`${this.serverUrl}/bfs/${rows}/${columns}`, null));
+  public GeneratedPuzzleByBfs(rows: number, columns: number): Promise<boolean> {
+    return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/bfs/${rows}/${columns}`, null));
   }
 
-  public GeneratedPuzzleByDfs(rows: number, columns: number): Promise<void> {
-    return firstValueFrom(this.http.post<void>(`${this.serverUrl}/dfs/${rows}/${columns}`, null));
+  public GeneratedPuzzleByDfs(rows: number, columns: number): Promise<boolean> {
+    return firstValueFrom(this.http.post<boolean>(`${this.serverUrl}/dfs/${rows}/${columns}`, null));
   }
 }

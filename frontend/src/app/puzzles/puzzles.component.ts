@@ -9,6 +9,8 @@ import { PuzzleDimensions } from '../interfaces/puzzle-dimensions.interface';
 })
 export class PuzzlesComponent {
   @Input() PuzzlesIds: number[];
+  @Input() HasGeneratingSucceeded: boolean;
+  @Input() IsGeneratingPossible: boolean;
   @Output() UpdatePuzzle: EventEmitter<number>;
   @Output() GenerateDfsPuzzle: EventEmitter<PuzzleDimensions>;
   @Output() GenerateBfsPuzzle: EventEmitter<PuzzleDimensions>;

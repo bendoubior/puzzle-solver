@@ -1,10 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { log } from 'console';
 import { AbstractDbService } from 'src/db/db.service';
 import { GeneratePuzzlesService } from 'src/generate-puzzles/generate-puzzles.service';
-import { Point } from 'src/interfaces/point.interface';
-import { Puzzle } from 'src/interfaces/puzzle.interface';
-import { PuzzleStateService } from 'src/puzzle-state/puzzle-state.service';
 import { UserProgressService } from 'src/services/user-progress.service';
 
 @Injectable()
@@ -21,16 +17,19 @@ export class PuzzlesService {
         this.dbService.DeleteAll();
     }
 
-    public GeneratedPuzzleByBfs(row: number, column: number): void {
+    public GeneratedPuzzleByBfs(row: number, column: number): boolean {
         const generatedPuzzle = this.generatePuzzlesService.GenerateBfs(row, column);
-        if(generatedPuzzle === null) return;
+        if(generatedPuzzle === null) return false;
         generatedPuzzle.userProgress = this.userProgressService.GetInitialUserProgress(generatedPuzzle.initialState);        
         this.dbService.CreateOne(generatedPuzzle);
+        return true;
     }
 
-    public GeneratedPuzzleByDfs(row: number, column: number): void {
+    public GeneratedPuzzleByDfs(row: number, column: number): boolean {
         const generatedPuzzle = this.generatePuzzlesService.GenerateDfs(row, column);
+        if(generatedPuzzle === null) return false;
         generatedPuzzle.userProgress = this.userProgressService.GetInitialUserProgress(generatedPuzzle.initialState);
         this.dbService.CreateOne(generatedPuzzle);
+        return true;
     }
 }

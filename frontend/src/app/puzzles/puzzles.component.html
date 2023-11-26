@@ -7,14 +7,14 @@
     </div>
     <div class="generate-container">
         <form class="type-input">
-                <div>
-                    <input type="radio" [(ngModel)]="GenerateType" name="GenerateType" value="bfs" checked>Bfs
-                </div>
-                <div>
-                    <input type="radio" [(ngModel)]="GenerateType" name="GenerateType" value="dfs">Dfs
-                </div>
-            </form>
-        <button class="generate-button" (click)="CreatePuzzle()">צור פאזל חדש</button>
+            <div>
+                <input type="radio" [(ngModel)]="GenerateType" name="GenerateType" value="bfs" checked>Bfs
+            </div>
+            <div>
+                <input type="radio" [(ngModel)]="GenerateType" name="GenerateType" value="dfs">Dfs
+            </div>
+        </form>
+        <button class="generate-button" [ngClass]="{ 'success-button': HasGeneratingSucceeded, 'error-button': !HasGeneratingSucceeded }" (click)="CreatePuzzle()" [disabled]="!IsGeneratingPossible">צור פאזל חדש</button>
         <div class="columns-input input-container">
             <input dir="rtl" class="styled-input" type="number" [(ngModel)]="NumRows" placeholder="מספר שורות"/>
             <span>מספר עמודות</span>

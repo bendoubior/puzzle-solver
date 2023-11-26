@@ -9,12 +9,15 @@
     display: flex;
     flex-wrap: wrap;
     border-bottom: 2px solid var(--grey);
+    justify-content: flex-start;
+    align-content: flex-start;
 
   .name-item {
     cursor: pointer; 
     width: calc(33.33% - 20px);
-    margin: 10px; 
+    margin: 10px;
     box-sizing: border-box; 
+    height: 10vh;
     text-align: center;
     border-radius: 20px;
     border: 2px solid var(--grey);
@@ -66,6 +69,13 @@
     font-size: 20px;
     font-weight: bold;
     color: var(--grey);
+  }
+  .success-button {
+    color: green;
+  }
+  
+  .error-button {
+    color: red;
   }
 }
 

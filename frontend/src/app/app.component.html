@@ -4,10 +4,12 @@
     <h2 dir="rtl">בואו נפתור פאזלים!</h2>
   </div>
   <app-puzzles class="menu"
-  [PuzzlesIds]="this.PuzzlesService.PuzzlesIds$ | async"
+  [PuzzlesIds]="this.PuzzlesFacade.PuzzlesIds$ | async"
+  [HasGeneratingSucceeded]="this.PuzzlesFacade.HasGeneratingSucceeded$ | async"
+  [IsGeneratingPossible]="this.PuzzlesFacade.IsGeneratingPossible$ | async"
   (UpdatePuzzle)=this.PuzzleStateFacade.SetPuzzle($event)
-  (GenerateDfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByDfs($event)
-  (GenerateBfsPuzzle)=this.PuzzlesService.GeneratedPuzzleByBfs($event)
+  (GenerateDfsPuzzle)=this.PuzzlesFacade.GeneratedPuzzleByDfs($event)
+  (GenerateBfsPuzzle)=this.PuzzlesFacade.GeneratedPuzzleByBfs($event)
   ></app-puzzles>
   <app-puzzle-display class="main"
   [Puzzle]="this.PuzzleStateFacade.Puzzle$ | async"
