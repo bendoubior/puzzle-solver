@@ -5,7 +5,7 @@
     </div>
     <app-puzzles-menu
         class="menu"
-        [PuzzlesIds]="this.PuzzlesFacade.PuzzlesIds$ | async"
+        [PuzzlesMetadata]="this.PuzzlesFacade.PuzzlesMetadata$ | async"
         [HasGeneratingSucceeded]="this.PuzzlesFacade.HasGeneratingSucceeded$ | async"
         [IsGeneratingPossible]="this.PuzzlesFacade.IsGeneratingPossible$ | async"
         (UpdatePuzzle)="this.PuzzleStateFacade.SetPuzzle($event)"
@@ -24,3 +24,4 @@
         (MoveToFinalState)="this.PuzzleStateFacade.MoveToFinalState()"
     ></app-puzzle-display>
 </div>
+

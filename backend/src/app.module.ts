@@ -13,6 +13,7 @@ import { ConfigModule } from '@nestjs/config';
 import configuration from './configs/configuration';
 import { GenerateMatrixService } from './services/generate-matrix/generate-matrix.service';
 import { PuzzleActionsService } from './services/puzzle-actions/puzzle-actions.service';
+import { UtilsService } from './services/utils/utils.service';
 
 @Module({
     imports: [
@@ -22,6 +23,7 @@ import { PuzzleActionsService } from './services/puzzle-actions/puzzle-actions.s
     ],
     controllers: [PuzzlesController, PuzzleStateController],
     providers: [
+        UtilsService,
         PuzzlesService,
         {
             provide: AbstractDbService,

@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { PuzzleDimensions } from '../../../core/interfaces/puzzle-dimensions.interface';
+import { PuzzleMetadata } from 'src/app/core/interfaces/puzzle-metadata.interface';
 
 @Component({
     selector: 'app-puzzles-menu',
@@ -8,7 +9,7 @@ import { PuzzleDimensions } from '../../../core/interfaces/puzzle-dimensions.int
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PuzzlesMenuComponent {
-    @Input() PuzzlesIds: number[];
+    @Input() PuzzlesMetadata: PuzzleMetadata[];
     @Input() HasGeneratingSucceeded: boolean;
     @Input() IsGeneratingPossible: boolean;
     @Output() UpdatePuzzle: EventEmitter<number>;
@@ -19,7 +20,7 @@ export class PuzzlesMenuComponent {
     public GenerateType: string;
 
     constructor() {
-        this.PuzzlesIds = [];
+        this.PuzzlesMetadata = [];
         this.UpdatePuzzle = new EventEmitter<number>();
         this.GenerateDfsPuzzle = new EventEmitter<PuzzleDimensions>();
         this.GenerateBfsPuzzle = new EventEmitter<PuzzleDimensions>();

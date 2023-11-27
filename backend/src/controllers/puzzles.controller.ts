@@ -1,13 +1,14 @@
 import { Controller, Get, Param, Post, Delete } from '@nestjs/common';
 import { PuzzlesService } from '../services/puzzles/puzzles.service';
+import { PuzzleMetadata } from 'src/interfaces/puzzle-metadata.interface';
 
 @Controller('puzzles')
 export class PuzzlesController {
     constructor(private puzzlesService: PuzzlesService) {}
 
     @Get()
-    public GetPuzzlesIds(): Promise<number[]> {
-        return this.puzzlesService.GetPuzzlesIds();
+    public GetPuzzlesMetadata(): Promise<PuzzleMetadata[]> {
+        return this.puzzlesService.GetPuzzlesMetadata();
     }
 
     @Delete()

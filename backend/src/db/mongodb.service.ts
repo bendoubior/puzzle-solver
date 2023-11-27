@@ -7,9 +7,8 @@ import { Puzzle } from 'src/schemas/puzzle.schema';
 export class MongodbService {
     constructor(@InjectModel(Puzzle.name) private puzzleModel: Model<Puzzle>) {}
 
-    public async GetIds(): Promise<number[]> {
-        const puzzles = await this.puzzleModel.find().exec();
-        return puzzles.map((puzzle: any) => puzzle._id);
+    public async GetAll(): Promise<Puzzle[]> {
+        return this.puzzleModel.find().exec();
     }
 
     public async FindOne(id: number): Promise<Puzzle> {

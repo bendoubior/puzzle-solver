@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { firstValueFrom } from 'rxjs';
+import { PuzzleMetadata } from '../interfaces/puzzle-metadata.interface';
 
 @Injectable({
     providedIn: 'root',
@@ -13,8 +14,8 @@ export class PuzzlesApi {
         this.serverUrl = `http://${environment.serverUrl}/puzzles`;
     }
 
-    public get PuzzlesIds(): Promise<number[]> {
-        return firstValueFrom(this.http.get<number[]>(this.serverUrl));
+    public get PuzzlesMetadata(): Promise<PuzzleMetadata[]> {
+        return firstValueFrom(this.http.get<PuzzleMetadata[]>(this.serverUrl));
     }
 
     public GeneratedPuzzleByBfs(rows: number, columns: number): Promise<boolean> {

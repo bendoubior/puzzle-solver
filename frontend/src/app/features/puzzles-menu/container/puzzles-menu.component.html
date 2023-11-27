@@ -3,10 +3,14 @@
     <div class="name-container">
         <div
             class="name-item"
-            *ngFor="let id of PuzzlesIds; let i = index"
-            (click)="SetPuzzle(id)"
+            [ngClass]="{
+                'completed-puzzle': data.progressPercentage === 100
+            }"
+            *ngFor="let data of PuzzlesMetadata; let i = index"
+            (click)="SetPuzzle(data.id)"
         >
-            <h2>{{ i + 1 }}</h2>
+            <h2 class="id-element">{{ i + 1 }}</h2>
+            <div class="percentage-element">{{ data.progressPercentage }}%</div>
         </div>
     </div>
     <div class="generate-container">
@@ -59,3 +63,4 @@
         </div>
     </div>
 </div>
+

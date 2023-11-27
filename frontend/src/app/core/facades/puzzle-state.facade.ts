@@ -33,12 +33,13 @@ export class PuzzleStateFacade {
     public async SetPuzzle(id: number): Promise<void> {
         const newPuzzle = await this.puzzleStateApi.GetPuzzle(id);
         this.puzzle$.next(newPuzzle);
+        this.puzzlesFacade.UpdatePuzzlesMetadata();
     }
 
     public async DeletePuzzle(): Promise<void> {
         await this.puzzleStateApi.DeletePuzzle(this.puzzle$.value._id);
         this.puzzle$.next(null);
-        this.puzzlesFacade.UpdatePuzzlesIds();
+        this.puzzlesFacade.UpdatePuzzlesMetadata();
     }
 
     public async CheckStep(step: Point): Promise<void> {
@@ -66,7 +67,5 @@ export class PuzzleStateFacade {
         await this.puzzleStateApi.MoveToFinalState(this.puzzle$.value._id);
         this.SetPuzzle(this.puzzle$.value._id);
     }
-
-    private updateXNeightbors(): void {}
 }
 

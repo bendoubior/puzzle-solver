@@ -28,7 +28,7 @@ export class GeneratePuzzlesService {
             const initialState = this.generateMatrixService.GenerateRandomMatrix(rows, columns);
             const steps = this.getStepsBfs(initialState, finalState);
 
-            if (steps)
+            if (steps && steps.length != 0)
                 return {
                     initialState: initialState,
                     finalState: finalState,

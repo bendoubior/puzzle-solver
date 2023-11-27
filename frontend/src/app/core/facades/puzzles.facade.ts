@@ -2,24 +2,25 @@ import { Injectable } from '@angular/core';
 import { PuzzlesApi } from '../apis/puzzles.api';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PuzzleDimensions } from '../interfaces/puzzle-dimensions.interface';
+import { PuzzleMetadata } from '../interfaces/puzzle-metadata.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class PuzzlesFacade {
-    private puzzlesIds$: BehaviorSubject<number[]>;
+    private puzzlesMetadata$: BehaviorSubject<PuzzleMetadata[]>;
     private hasGeneratingSucceeded$: BehaviorSubject<boolean>;
     private isGeneratingPossible$: BehaviorSubject<boolean>;
 
     constructor(private puzzlesApi: PuzzlesApi) {
-        this.puzzlesIds$ = new BehaviorSubject<number[]>([]);
+        this.puzzlesMetadata$ = new BehaviorSubject<PuzzleMetadata[]>([]);
         this.hasGeneratingSucceeded$ = new BehaviorSubject<boolean>(true);
         this.isGeneratingPossible$ = new BehaviorSubject<boolean>(true);
-        this.UpdatePuzzlesIds();
+        this.UpdatePuzzlesMetadata();
     }
 
-    public get PuzzlesIds$(): Observable<number[]> {
-        return this.puzzlesIds$.asObservable();
+    public get PuzzlesMetadata$(): Observable<PuzzleMetadata[]> {
+        return this.puzzlesMetadata$.asObservable();
     }
 
     public get HasGeneratingSucceeded$(): Observable<boolean> {
@@ -35,7 +36,7 @@ export class PuzzlesFacade {
         const hasSucceeded = await this.puzzlesApi.GeneratedPuzzleByBfs(puzzleDimensions.rows, puzzleDimensions.columns);
         this.isGeneratingPossible$.next(true);
         this.hasGeneratingSucceeded$.next(hasSucceeded);
-        this.UpdatePuzzlesIds();
+        this.UpdatePuzzlesMetadata();
     }
 
     public async GeneratedPuzzleByDfs(puzzleDimensions: PuzzleDimensions): Promise<void> {
@@ -43,11 +44,11 @@ export class PuzzlesFacade {
         const hasSucceeded = await this.puzzlesApi.GeneratedPuzzleByDfs(puzzleDimensions.rows, puzzleDimensions.columns);
         this.isGeneratingPossible$.next(true);
         this.hasGeneratingSucceeded$.next(hasSucceeded);
-        this.UpdatePuzzlesIds();
+        this.UpdatePuzzlesMetadata();
     }
 
-    public async UpdatePuzzlesIds(): Promise<void> {
-        this.puzzlesIds$.next(await this.puzzlesApi.PuzzlesIds);
+    public async UpdatePuzzlesMetadata(): Promise<void> {
+        this.puzzlesMetadata$.next(await this.puzzlesApi.PuzzlesMetadata);
     }
 }
 

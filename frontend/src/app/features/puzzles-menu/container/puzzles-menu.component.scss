@@ -18,12 +18,27 @@
         margin: 10px;
         box-sizing: border-box;
         height: 10vh;
-        text-align: center;
         border-radius: 20px;
         border: 2px solid var(--grey);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 33%);
+        place-items: center;
+
+        .id-element {
+            grid-column: 2;
+            grid-row: 2;
+            text-align: center;
+        }
+
+        .percentage-element {
+            grid-column: 3;
+            grid-row: 3;
+            text-align: center;
+            font-size: var(--small-font);
+            font-weight: bold;
+        }
     }
 
     .name-item:hover {
@@ -114,4 +129,9 @@
 /* Improve appearance on hover */
 .styled-input:hover {
     border-color: var(--grey); /* Change border color on hover */
+}
+
+.completed-puzzle {
+    color: var(--green);
+    background-color: var(--grayish-white);
 }
